@@ -2,6 +2,41 @@
 
 # AlphaFold 3
 
+## Installation
+```bash
+conda create -n af3 python=3.11
+conda activate af3
+mkdir ~/hmmer_build ~/hmmer
+wget http://eddylab.org/software/hmmer/hmmer-3.4.tar.gz -P ~/hmmer_build
+cd ~/hmmer_build
+tar -zxf hmmer-3.4.tar.gz
+cd hmmer-3.4
+./configure --prefix=~/hmmer
+make -j8
+make install
+```
+
+Verify hmmer installation
+```bash
+export PATH="~/hmmer/bin:$PATH"
+hmmsearch -h
+```
+
+```bash
+conda activate af3
+git clone git@github.com:PKUfjh/alphafold3.git
+cd alphafold3
+pip install -r dev-requirements.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+mkdir third_party
+cd third_party
+git clone git@github.com:abseil/abseil-cpp.git
+git clone git@github.com:pybind/pybind11.git
+git clone git@github.com:pybind/pybind11_abseil.git
+git clone git@github.com:PDB-REDO/libcifpp.git
+git clone git@github.com:PDB-REDO/dssp.git
+pip3 install --no-deps . -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+```
+
 This package provides an implementation of the inference pipeline of AlphaFold
 3. See below for how to access the model parameters. You may only use AlphaFold
 3 model parameters if received directly from Google. Use is subject to these
