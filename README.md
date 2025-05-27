@@ -37,6 +37,20 @@ git clone git@github.com:PDB-REDO/dssp.git
 pip3 install --no-deps . -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ```
 
+## Running
+```bash
+# you should replace /gene/home/fanjh to your own root directory
+export PATH="/gene/home/fanjh/hmmer/bin:$PATH"
+python run_alphafold.py --json_path=./examples/fold_input.json\
+ --model_dir=/gene/home/fanjh/models --output_dir=./examples_out\
+ --run_data_pipeline=true -run_inference=true \
+ --jackhmmer_binary_path=/gene/home/fanjh/hmmer/bin/jackhmmer \
+ --nhmmer_binary_path=/gene/home/fanjh/hmmer/bin/nhmmer \
+ --hmmalign_binary_path=/gene/home/fanjh/hmmer/bin/hmmalign \
+ --hmmsearch_binary_path=/gene/home/fanjh/hmmer/bin/hmmsearch \
+ --hmmbuild_binary_path=/gene/home/fanjh/hmmer/bin/hmmbuild
+```
+
 This package provides an implementation of the inference pipeline of AlphaFold
 3. See below for how to access the model parameters. You may only use AlphaFold
 3 model parameters if received directly from Google. Use is subject to these
